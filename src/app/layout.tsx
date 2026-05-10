@@ -56,6 +56,11 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
+  verification: {
+    other: {
+      'naver-site-verification': '28a6358ac867b90c33a057b5834dec59ed24569b',
+    },
+  },
   formatDetection: {
     email: false,
     telephone: false,
