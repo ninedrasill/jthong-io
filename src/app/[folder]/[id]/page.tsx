@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { getAllContent, getById } from '@/lib/content';
+import { canSee } from '@/lib/auth';
 
 const VALID_FOLDERS = new Set([
   'essays', 'videos', 'travels', 'memos',
@@ -9,9 +10,7 @@ const VALID_FOLDERS = new Set([
 ]);
 
 export function generateStaticParams() {
-  return getAllContent()
-    .filter(c => c.visibility === 'public')
-    .map(c => ({ folder: c.folder, id: c.id }));
+  return getAllContent().map(c => ({ folder: c.folder, id: c.id }));
 }
 
 export default async function ContentPage({
@@ -22,7 +21,8 @@ export default async function ContentPage({
   const { folder, id } = await params;
   if (!VALID_FOLDERS.has(folder)) notFound();
   const item = getById(id);
-  if (!item || item.folder !== folder || item.visibility !== 'public') notFound();
+  if (!item || item.folder !== folder) notFound();
+  if (!(await canSee(item.visibility))) notFound();
 
   return (
     <main className="w-full px-6 sm:px-12 lg:px-40 py-12">

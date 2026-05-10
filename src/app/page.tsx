@@ -147,8 +147,12 @@ export default function Home() {
         </section>
       )}
 
-      <footer className="mt-32 px-6 sm:px-12 lg:px-40 py-10 border-t border-[var(--border)] text-xs text-[var(--muted)]">
-        © 2026 NINEDRASILL GROUP PTE. LTD.
+      <footer className="mt-32 px-6 sm:px-12 lg:px-40 py-10 border-t border-[var(--border)] text-xs text-[var(--muted)] flex flex-wrap items-center justify-between gap-4">
+        <span>© 2026 NINEDRASILL GROUP PTE. LTD.</span>
+        <div className="flex gap-4">
+          <Link href="/family" className="hover:opacity-70">FAMILY</Link>
+          <Link href="/private" className="hover:opacity-70">PRIVATE</Link>
+        </div>
       </footer>
     </main>
   );
