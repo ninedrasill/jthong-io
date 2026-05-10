@@ -36,7 +36,7 @@ export default async function PrivatePage({
 
   if (!auth) {
     return (
-      <main className="w-full px-6 sm:px-12 lg:px-40 py-12">
+      <main className="w-full px-6 sm:px-12 lg:px-60 py-12">
         <div className="mb-6">
           <Link href="/" className="text-sm text-[var(--muted)] hover:opacity-80">← 홈</Link>
         </div>
@@ -69,7 +69,7 @@ export default async function PrivatePage({
   const items = getAllContent().filter(c => c.visibility === 'private');
 
   return (
-    <main className="w-full px-6 sm:px-12 lg:px-40 py-12">
+    <main className="w-full px-6 sm:px-12 lg:px-60 py-12">
       <div className="mb-6 flex items-center justify-between">
         <Link href="/" className="text-sm text-[var(--muted)] hover:opacity-80">← 홈</Link>
         <form action={logoutAction}>

@@ -80,7 +80,7 @@ export default async function ContentPage({
     : null;
 
   return (
-    <main className="w-full px-6 sm:px-12 lg:px-40 py-12">
+    <main className="w-full px-6 sm:px-12 lg:px-60 py-12">
       {jsonLd && (
         <script
           type="application/ld+json"

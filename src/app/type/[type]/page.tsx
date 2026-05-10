@@ -53,7 +53,7 @@ export default async function TypePage({ params }: { params: Promise<{ type: str
   const Icon = meta.Icon;
 
   return (
-    <main className="w-full px-6 sm:px-12 lg:px-40 py-12">
+    <main className="w-full px-6 sm:px-12 lg:px-60 py-12">
       <div className="mb-8">
         <Link href="/" className="text-sm text-[var(--muted)] hover:opacity-80">← 홈</Link>
       </div>
