@@ -7,25 +7,39 @@ export default function Home() {
   const recent = all.slice(0, 4);
 
   return (
-    <main className="w-full px-16 py-12">
-      <header className="mb-10">
-        <h1 className="text-5xl font-bold tracking-wide" style={{ fontFamily: "var(--font-poiret), sans-serif" }}>JT HONG</h1>
-      </header>
+    <main className="w-full">
+      {/* 상단 로고 */}
+      <nav className="px-12 py-8">
+        <h1
+          className="text-2xl tracking-wide"
+          style={{ fontFamily: "var(--font-poiret), sans-serif" }}
+        >
+          JT HONG
+        </h1>
+      </nav>
 
-      <section className="mb-8 bg-[var(--card-red)] rounded-md p-5">
-        <div className="flex items-center gap-2 mb-2">
-          <span>🎯</span>
-          <h2 className="font-semibold">목표</h2>
+      {/* HERO — 중앙 타이틀 (JimKim 톤) */}
+      <section className="min-h-[70vh] flex flex-col items-center justify-center px-8 text-center">
+        <div className="text-xs tracking-[0.4em] text-[var(--muted)] mb-6">
+          — NINEDRASILL GROUP —
         </div>
-        <ul className="space-y-1 text-sm">
-          <li>• 1차 (2028): EXIT 시도, 300~500억 기준</li>
-          <li>• 2차 (2030~2031): 유니콘 1조+ (Plan B)</li>
-          <li>• 평생: 디지털 트윈 데이터 자산화</li>
-        </ul>
+        <h2
+          className="text-5xl md:text-6xl font-light leading-tight max-w-4xl"
+          style={{ fontFamily: "var(--font-poiret), sans-serif" }}
+        >
+          harmonize life
+        </h2>
       </section>
 
-      <section className="mb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+      {/* 5대 영역 */}
+      <section className="px-12 pt-20 pb-10">
+        <div className="flex items-center gap-6 mb-10">
+          <span className="text-xs tracking-[0.3em] text-[var(--muted)] whitespace-nowrap">
+            FIVE DOMAINS
+          </span>
+          <div className="flex-1 h-px bg-[var(--border)]" />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           <DomainCard tone="yellow" icon="💰" title="돈" subtitle="MONEY"
             items={[{ label: '사업·투자' }, { label: 'EXIT 전략' }, { label: '자산·재무' }]}
             href="/domain/money" />
@@ -44,8 +58,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mb-10">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+      {/* 콘텐츠 */}
+      <section className="px-12 pt-20 pb-10">
+        <div className="flex items-center gap-6 mb-10">
+          <span className="text-xs tracking-[0.3em] text-[var(--muted)] whitespace-nowrap">
+            CONTENT
+          </span>
+          <div className="flex-1 h-px bg-[var(--border)]" />
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {[
             { type: 'essays', label: '글', icon: '✍️' },
             { type: 'videos', label: '영상', icon: '🎥' },
@@ -57,24 +78,28 @@ export default function Home() {
             { type: 'lessons', label: '깨달음', icon: '💡' },
           ].map(c => (
             <Link key={c.type} href={`/type/${c.type}`}
-              className="bg-[var(--card-gray)] rounded-md px-4 py-3 text-sm hover:opacity-80 flex items-center gap-2">
+              className="bg-[var(--card-gray)] rounded-md px-5 py-4 text-sm hover:opacity-80 flex items-center gap-2">
               <span>➡️</span><span>{c.icon} {c.label}</span>
             </Link>
           ))}
         </div>
       </section>
 
+      {/* 최근 */}
       {recent.length > 0 && (
-        <section>
-          <h2 className="text-sm font-semibold mb-3 text-[var(--muted)] uppercase tracking-wider">
-            최근
-          </h2>
-          <div className="space-y-2">
+        <section className="px-12 pt-20 pb-10">
+          <div className="flex items-center gap-6 mb-10">
+            <span className="text-xs tracking-[0.3em] text-[var(--muted)] whitespace-nowrap">
+              RECENT
+            </span>
+            <div className="flex-1 h-px bg-[var(--border)]" />
+          </div>
+          <div className="space-y-3">
             {recent.map(c => (
               <Link
                 key={c.id}
                 href={`/${c.folder}/${c.id}`}
-                className="block bg-[var(--card-gray)] rounded-md p-4 hover:opacity-80"
+                className="block bg-[var(--card-gray)] rounded-md p-5 hover:opacity-80"
               >
                 <div className="flex items-center gap-2 text-xs text-[var(--muted)] mb-1">
                   <span>{c.date}</span><span>·</span>
@@ -89,7 +114,7 @@ export default function Home() {
         </section>
       )}
 
-      <footer className="mt-16 pt-6 border-t border-[var(--border)] text-xs text-[var(--muted)]">
+      <footer className="mt-32 px-12 py-10 border-t border-[var(--border)] text-xs text-[var(--muted)]">
         © 2026 NINEDRASILL GROUP PTE. LTD.
       </footer>
     </main>
