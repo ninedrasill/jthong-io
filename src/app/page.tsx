@@ -48,9 +48,6 @@ export default function Home() {
       </section>
 
       <section className="mb-10">
-        <h2 className="text-sm font-semibold mb-3 text-[var(--muted)] uppercase tracking-wider">
-          콘텐츠
-        </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
           {[
             { type: 'essays', label: '글', icon: '✍️' },
