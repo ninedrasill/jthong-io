@@ -16,7 +16,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col relative">
         <div
           className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/bg.jpg')" }}
+          style={{ backgroundImage: "url('/bg.png')" }}
         />
         <div className="fixed inset-0 -z-10 bg-black/75" />
         {children}
