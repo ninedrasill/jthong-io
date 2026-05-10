@@ -1,4 +1,9 @@
 import Link from 'next/link';
+import {
+  Wallet, Clock, Users, HeartPulse, Brain,
+  PenLine, Video, Plane, StickyNote, Rocket, Building2, Target, Lightbulb,
+  ChevronRight,
+} from 'lucide-react';
 import { DomainCard } from '@/components/DomainCard';
 import { getAllContent } from '@/lib/content';
 
@@ -6,9 +11,19 @@ export default function Home() {
   const all = getAllContent();
   const recent = all.slice(0, 4);
 
+  const contentTypes = [
+    { type: 'essays', label: '글', Icon: PenLine },
+    { type: 'videos', label: '영상', Icon: Video },
+    { type: 'travels', label: '여행', Icon: Plane },
+    { type: 'memos', label: '메모', Icon: StickyNote },
+    { type: 'projects', label: '프로젝트', Icon: Rocket },
+    { type: 'businesses', label: '사업', Icon: Building2 },
+    { type: 'decisions', label: '의사결정', Icon: Target },
+    { type: 'lessons', label: '깨달음', Icon: Lightbulb },
+  ] as const;
+
   return (
     <main className="w-full">
-      {/* 상단 로고 */}
       <nav className="px-6 sm:px-12 lg:px-40 py-8">
         <h1
           className="text-2xl tracking-wide"
@@ -18,7 +33,6 @@ export default function Home() {
         </h1>
       </nav>
 
-      {/* HERO — 중앙 타이틀 (JimKim 톤) */}
       <section className="min-h-[70vh] flex flex-col items-center justify-center px-8 text-center">
         <div className="text-xs tracking-[0.4em] text-[var(--muted)] mb-6">
           — NINEDRASILL GROUP —
@@ -31,7 +45,6 @@ export default function Home() {
         </h2>
       </section>
 
-      {/* 5대 영역 */}
       <section className="px-6 sm:px-12 lg:px-40 pt-20 pb-10">
         <div className="flex items-center gap-6 mb-10">
           <span className="text-xs tracking-[0.3em] text-[var(--muted)] whitespace-nowrap">
@@ -40,25 +53,24 @@ export default function Home() {
           <div className="flex-1 h-px bg-[var(--border)]" />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          <DomainCard tone="yellow" icon="💰" title="돈" subtitle="MONEY"
+          <DomainCard tone="yellow" icon={Wallet} title="돈" subtitle="MONEY"
             items={[{ label: '사업·투자' }, { label: 'EXIT 전략' }, { label: '자산·재무' }]}
             href="/domain/money" />
-          <DomainCard tone="blue" icon="⏱" title="시간" subtitle="TIME"
+          <DomainCard tone="blue" icon={Clock} title="시간" subtitle="TIME"
             items={[{ label: '일정·습관' }, { label: '의사결정' }, { label: '자동화' }]}
             href="/domain/time" />
-          <DomainCard tone="green" icon="👥" title="사람" subtitle="PEOPLE"
+          <DomainCard tone="green" icon={Users} title="사람" subtitle="PEOPLE"
             items={[{ label: '가족' }, { label: '팀·파트너' }, { label: '인맥·고객' }]}
             href="/domain/people" />
-          <DomainCard tone="pink" icon="💪" title="몸" subtitle="BODY"
+          <DomainCard tone="pink" icon={HeartPulse} title="몸" subtitle="BODY"
             items={[{ label: '건강·운동' }, { label: '식단·수면' }, { label: '에너지' }]}
             href="/domain/body" />
-          <DomainCard tone="purple" icon="🧠" title="정신" subtitle="MIND"
+          <DomainCard tone="purple" icon={Brain} title="정신" subtitle="MIND"
             items={[{ label: '사주·철학' }, { label: '통찰·감정' }, { label: '깨달음' }]}
             href="/domain/mind" />
         </div>
       </section>
 
-      {/* 콘텐츠 */}
       <section className="px-6 sm:px-12 lg:px-40 pt-20 pb-10">
         <div className="flex items-center gap-6 mb-10">
           <span className="text-xs tracking-[0.3em] text-[var(--muted)] whitespace-nowrap">
@@ -67,25 +79,17 @@ export default function Home() {
           <div className="flex-1 h-px bg-[var(--border)]" />
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          {[
-            { type: 'essays', label: '글', icon: '✍️' },
-            { type: 'videos', label: '영상', icon: '🎥' },
-            { type: 'travels', label: '여행', icon: '✈️' },
-            { type: 'memos', label: '메모', icon: '📝' },
-            { type: 'projects', label: '프로젝트', icon: '🚀' },
-            { type: 'businesses', label: '사업', icon: '🏢' },
-            { type: 'decisions', label: '의사결정', icon: '🎯' },
-            { type: 'lessons', label: '깨달음', icon: '💡' },
-          ].map(c => (
+          {contentTypes.map(c => (
             <Link key={c.type} href={`/type/${c.type}`}
-              className="px-5 py-4 text-sm hover:opacity-70 flex items-center gap-2">
-              <span>➡️</span><span>{c.icon} {c.label}</span>
+              className="px-5 py-4 text-sm hover:opacity-70 flex items-center gap-3">
+              <ChevronRight className="w-4 h-4 text-[var(--muted)]" strokeWidth={1.5} />
+              <c.Icon className="w-4 h-4 text-[var(--muted)]" strokeWidth={1.5} />
+              <span>{c.label}</span>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* 최근 */}
       {recent.length > 0 && (
         <section className="px-6 sm:px-12 lg:px-40 pt-20 pb-10">
           <div className="flex items-center gap-6 mb-10">

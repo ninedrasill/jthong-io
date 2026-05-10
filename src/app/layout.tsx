@@ -22,10 +22,16 @@ export default function RootLayout({
     <html lang="ko" className={`${poiret.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col relative">
         <div
-          className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/bg.png')" }}
+          className="fixed left-0 top-0 w-screen -z-10 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/bg.png')",
+            height: "100lvh",
+          }}
         />
-        <div className="fixed inset-0 -z-10 bg-black/75" />
+        <div
+          className="fixed left-0 top-0 w-screen -z-10 bg-black/75"
+          style={{ height: "100lvh" }}
+        />
         {children}
       </body>
     </html>

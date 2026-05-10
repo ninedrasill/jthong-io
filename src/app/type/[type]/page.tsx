@@ -41,7 +41,7 @@ export default async function TypePage({ params }: { params: Promise<{ type: str
       </header>
 
       {items.length === 0 ? (
-        <div className="bg-[var(--card-gray)] rounded-md p-8 text-center text-[var(--muted)]">
+        <div className="p-8 text-center text-[var(--muted)]">
           아직 콘텐츠가 없습니다.
         </div>
       ) : (
@@ -50,7 +50,7 @@ export default async function TypePage({ params }: { params: Promise<{ type: str
             <Link
               key={c.id}
               href={`/${c.folder}/${c.id}`}
-              className="block bg-[var(--card-gray)] rounded-md p-4 hover:opacity-80"
+              className="block p-4 hover:opacity-70"
             >
               <div className="flex items-center gap-2 text-xs text-[var(--muted)] mb-1">
                 <span>{c.date}</span>
