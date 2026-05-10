@@ -89,7 +89,7 @@ export default function Home() {
       )}
 
       <footer className="mt-16 pt-6 border-t border-[var(--border)] text-xs text-[var(--muted)]">
-        © 2026 홍진택 · NINEDRASILL · jthong.io
+        © 2026 JT HONG · NINEDRASILL
       </footer>
     </main>
   );
