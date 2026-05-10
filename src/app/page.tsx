@@ -78,7 +78,7 @@ export default function Home() {
             { type: 'lessons', label: '깨달음', icon: '💡' },
           ].map(c => (
             <Link key={c.type} href={`/type/${c.type}`}
-              className="bg-[var(--card-gray)] rounded-md px-5 py-4 text-sm hover:opacity-80 flex items-center gap-2">
+              className="px-5 py-4 text-sm hover:opacity-70 flex items-center gap-2">
               <span>➡️</span><span>{c.icon} {c.label}</span>
             </Link>
           ))}
@@ -99,7 +99,7 @@ export default function Home() {
               <Link
                 key={c.id}
                 href={`/${c.folder}/${c.id}`}
-                className="block bg-[var(--card-gray)] rounded-md p-5 hover:opacity-80"
+                className="block p-5 hover:opacity-70"
               >
                 <div className="flex items-center gap-2 text-xs text-[var(--muted)] mb-1">
                   <span>{c.date}</span><span>·</span>

@@ -23,7 +23,7 @@ interface Props {
 
 export function DomainCard({ icon, title, subtitle, items, tone, href }: Props) {
   const inner = (
-    <div className={`${toneMap[tone]} rounded-md p-4 h-full transition-opacity hover:opacity-90`}>
+    <div className="p-4 h-full transition-opacity hover:opacity-70">
       <div className="flex items-baseline gap-2 mb-3">
         <span className="text-base">{icon}</span>
         <h3 className="text-base font-semibold">{title}</h3>
