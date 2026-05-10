@@ -6,10 +6,56 @@ import {
 } from 'lucide-react';
 import { DomainCard } from '@/components/DomainCard';
 import { getPublicContent } from '@/lib/content';
+import { SITE_URL, SITE_AUTHOR } from '@/lib/seo';
 
 export default function Home() {
   const all = getPublicContent();
   const recent = all.slice(0, 4);
+
+  const personLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: SITE_AUTHOR,
+    alternateName: ['JT Hong', '홍진택'],
+    url: SITE_URL,
+    jobTitle: 'Founder & CEO',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'NINEDRASILL GROUP PTE. LTD.',
+      url: SITE_URL,
+    },
+    sameAs: [SITE_URL],
+  };
+
+  const orgLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'NINEDRASILL GROUP PTE. LTD.',
+    alternateName: 'Ninedrasill Group',
+    url: SITE_URL,
+    logo: `${SITE_URL}/opengraph-image`,
+    founder: {
+      '@type': 'Person',
+      name: SITE_AUTHOR,
+    },
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'SG',
+    },
+    subOrganization: [
+      { '@type': 'Organization', name: '주식회사 화물인' },
+      { '@type': 'Organization', name: '주식회사 화물인이사' },
+    ],
+  };
+
+  const websiteLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    url: SITE_URL,
+    name: 'JT HONG · NINEDRASILL',
+    inLanguage: 'ko-KR',
+    publisher: { '@type': 'Organization', name: 'NINEDRASILL GROUP PTE. LTD.' },
+  };
 
   const contentTypes = [
     { type: 'essays', label: '글', Icon: PenLine },
@@ -24,6 +70,18 @@ export default function Home() {
 
   return (
     <main className="w-full">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+      />
       <nav className="px-6 sm:px-12 lg:px-60 py-8">
         <h1
           className="text-2xl tracking-wide"
