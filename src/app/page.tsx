@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="w-full px-16 py-12">
       <header className="mb-10">
-        <h1 className="text-3xl font-bold tracking-tight">JTHONG.IO</h1>
+        <h1 className="text-3xl font-bold tracking-tight">JT HONG</h1>
         <p className="text-[var(--muted)] mt-2 text-sm">
           Ninedrasill Group
         </p>
@@ -74,7 +74,11 @@ export default function Home() {
           </h2>
           <div className="space-y-2">
             {recent.map(c => (
-              <div key={c.id} className="bg-[var(--card-gray)] rounded-md p-4">
+              <Link
+                key={c.id}
+                href={`/${c.folder}/${c.id}`}
+                className="block bg-[var(--card-gray)] rounded-md p-4 hover:opacity-80"
+              >
                 <div className="flex items-center gap-2 text-xs text-[var(--muted)] mb-1">
                   <span>{c.date}</span><span>·</span>
                   <span>{c.type}</span><span>·</span>
@@ -82,7 +86,7 @@ export default function Home() {
                 </div>
                 <div className="font-medium">{c.title}</div>
                 <p className="text-sm text-[var(--muted)] mt-1">{c.agi_summary}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </section>

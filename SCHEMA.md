@@ -1,4 +1,4 @@
-# NINEDRASILL 태깅 스키마 v0.1
+# NINEDRASILL 태깅 스키마 v0.2
 
 모든 콘텐츠는 이 스키마를 따른다. AGI 학습 친화성이 최우선.
 
@@ -44,6 +44,11 @@ agi_summary: |
 | energy | number | - | 0.0 ~ 1.0 |
 | visibility | enum | ✓ | public, private, family |
 | agi_summary | string | ✓ | 1-2줄 요약 |
+| cause | string | - | 이 글/결정의 발단·계기 (디지털 트윈 인과 추적) |
+| outcome | string | - | 결과·후속 영향 (없으면 비워두고 나중 업데이트) |
+| confidence | number | - | 0.0~1.0, 사실(1.0) ↔ 가설(0.3) 신뢰도 |
+| revised_from | string | - | 이전 버전 id — 생각이 바뀌었을 때 참조 |
+| conflicting | string[] | - | 본인 안에서 충돌하는 다른 콘텐츠 id 목록 |
 
 ## 폴더 매핑
 

@@ -23,8 +23,17 @@ export interface ContentMeta {
   energy?: number;
   visibility: 'public' | 'private' | 'family';
   agi_summary: string;
+  cause?: string;
+  outcome?: string;
+  confidence?: number;
+  revised_from?: string;
+  conflicting?: string[];
   body: string;
   folder: string;
+}
+
+export function getById(id: string): ContentMeta | undefined {
+  return getAllContent().find(c => c.id === id);
 }
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
