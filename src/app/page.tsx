@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="w-full">
       {/* 상단 로고 */}
-      <nav className="px-12 py-8">
+      <nav className="px-6 sm:px-12 lg:px-24 py-8">
         <h1
           className="text-2xl tracking-wide"
           style={{ fontFamily: "var(--font-poiret), sans-serif" }}
@@ -32,7 +32,7 @@ export default function Home() {
       </section>
 
       {/* 5대 영역 */}
-      <section className="px-12 pt-20 pb-10">
+      <section className="px-6 sm:px-12 lg:px-24 pt-20 pb-10">
         <div className="flex items-center gap-6 mb-10">
           <span className="text-xs tracking-[0.3em] text-[var(--muted)] whitespace-nowrap">
             FIVE DOMAINS
@@ -59,7 +59,7 @@ export default function Home() {
       </section>
 
       {/* 콘텐츠 */}
-      <section className="px-12 pt-20 pb-10">
+      <section className="px-6 sm:px-12 lg:px-24 pt-20 pb-10">
         <div className="flex items-center gap-6 mb-10">
           <span className="text-xs tracking-[0.3em] text-[var(--muted)] whitespace-nowrap">
             CONTENT
@@ -87,7 +87,7 @@ export default function Home() {
 
       {/* 최근 */}
       {recent.length > 0 && (
-        <section className="px-12 pt-20 pb-10">
+        <section className="px-6 sm:px-12 lg:px-24 pt-20 pb-10">
           <div className="flex items-center gap-6 mb-10">
             <span className="text-xs tracking-[0.3em] text-[var(--muted)] whitespace-nowrap">
               RECENT
@@ -114,7 +114,7 @@ export default function Home() {
         </section>
       )}
 
-      <footer className="mt-32 px-12 py-10 border-t border-[var(--border)] text-xs text-[var(--muted)]">
+      <footer className="mt-32 px-6 sm:px-12 lg:px-24 py-10 border-t border-[var(--border)] text-xs text-[var(--muted)]">
         © 2026 NINEDRASILL GROUP PTE. LTD.
       </footer>
     </main>
