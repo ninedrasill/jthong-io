@@ -27,8 +27,8 @@ export default async function ContentPage({
   return (
     <main className="w-full px-6 sm:px-12 lg:px-40 py-12">
       <div className="mb-6">
-        <Link href={`/type/${folder}`} className="text-sm text-[var(--muted)] hover:opacity-80">
-          ← {folder}
+        <Link href="/" className="text-sm text-[var(--muted)] hover:opacity-80">
+          ← 홈
         </Link>
       </div>
 
