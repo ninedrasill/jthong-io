@@ -11,7 +11,7 @@ export default function Home() {
       <header className="mb-10">
         <h1 className="text-3xl font-bold tracking-tight">JTHONG.IO</h1>
         <p className="text-[var(--muted)] mt-2 text-sm">
-          NINEDRASILL PROJECT
+          Ninedrasill Group
         </p>
       </header>
 
