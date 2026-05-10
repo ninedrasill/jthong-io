@@ -25,7 +25,7 @@ export default async function ContentPage({
   if (!item || item.folder !== folder || item.visibility !== 'public') notFound();
 
   return (
-    <main className="w-full max-w-3xl mx-auto px-8 py-12">
+    <main className="w-full px-6 sm:px-12 lg:px-40 py-12">
       <div className="mb-6">
         <Link href={`/type/${folder}`} className="text-sm text-[var(--muted)] hover:opacity-80">
           ← {folder}
