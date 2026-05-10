@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import {
   PenLine, Video, Plane, StickyNote, Rocket, Building2, Target, Lightbulb, User,
   type LucideIcon,
 } from 'lucide-react';
 import { getAllContent } from '@/lib/content';
+import { SITE_URL } from '@/lib/seo';
 
 const TYPE_MAP: Record<string, { label: string; Icon: LucideIcon; folder: string }> = {
   essays: { label: '글', Icon: PenLine, folder: 'essays' },
@@ -20,6 +22,26 @@ const TYPE_MAP: Record<string, { label: string; Icon: LucideIcon; folder: string
 
 export function generateStaticParams() {
   return Object.keys(TYPE_MAP).map(type => ({ type }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ type: string }>;
+}): Promise<Metadata> {
+  const { type } = await params;
+  const meta = TYPE_MAP[type];
+  if (!meta) return {};
+  return {
+    title: meta.label,
+    description: `JT HONG의 ${meta.label} 콘텐츠 모음 — NINEDRASILL`,
+    alternates: { canonical: `${SITE_URL}/type/${type}` },
+    openGraph: {
+      title: meta.label,
+      description: `JT HONG의 ${meta.label} 콘텐츠`,
+      url: `${SITE_URL}/type/${type}`,
+    },
+  };
 }
 
 export default async function TypePage({ params }: { params: Promise<{ type: string }> }) {

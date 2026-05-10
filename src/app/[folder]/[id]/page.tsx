@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import type { Metadata } from 'next';
 import { getAllContent, getById } from '@/lib/content';
 import { canSee } from '@/lib/auth';
+import { SITE_URL, SITE_AUTHOR } from '@/lib/seo';
 
 const VALID_FOLDERS = new Set([
   'essays', 'videos', 'travels', 'memos',
@@ -11,6 +13,39 @@ const VALID_FOLDERS = new Set([
 
 export function generateStaticParams() {
   return getAllContent().map(c => ({ folder: c.folder, id: c.id }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ folder: string; id: string }>;
+}): Promise<Metadata> {
+  const { folder, id } = await params;
+  const item = getById(id);
+  if (!item || item.folder !== folder || item.visibility !== 'public') {
+    return { robots: { index: false, follow: false } };
+  }
+  const url = `${SITE_URL}/${folder}/${id}`;
+  return {
+    title: item.title,
+    description: item.agi_summary,
+    keywords: item.tags,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      url,
+      title: item.title,
+      description: item.agi_summary,
+      publishedTime: item.date,
+      authors: [SITE_AUTHOR],
+      tags: item.tags,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: item.title,
+      description: item.agi_summary,
+    },
+  };
 }
 
 export default async function ContentPage({
@@ -24,8 +59,34 @@ export default async function ContentPage({
   if (!item || item.folder !== folder) notFound();
   if (!(await canSee(item.visibility))) notFound();
 
+  const jsonLd = item.visibility === 'public'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: item.title,
+        description: item.agi_summary,
+        datePublished: item.date,
+        dateModified: item.date,
+        author: { '@type': 'Person', name: SITE_AUTHOR, url: SITE_URL },
+        publisher: {
+          '@type': 'Organization',
+          name: 'NINEDRASILL GROUP',
+          url: SITE_URL,
+        },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/${folder}/${id}` },
+        keywords: item.tags?.join(', '),
+        about: item.domain.join(', '),
+      }
+    : null;
+
   return (
     <main className="w-full px-6 sm:px-12 lg:px-40 py-12">
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
       <div className="mb-6">
         <Link href="/" className="text-sm text-[var(--muted)] hover:opacity-80">
           ← 홈
@@ -45,7 +106,6 @@ export default async function ContentPage({
           )}
         </div>
         <h1 className="text-3xl font-bold tracking-tight mb-3">{item.title}</h1>
-        <p className="text-sm text-[var(--muted)]">{item.agi_summary}</p>
         {item.tags && item.tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-4">
             {item.tags.map(t => (

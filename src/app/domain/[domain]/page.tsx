@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import {
   Wallet, Clock, Users, HeartPulse, Brain,
   type LucideIcon,
 } from 'lucide-react';
 import { getAllContent, type Domain } from '@/lib/content';
+import { SITE_URL } from '@/lib/seo';
 
 const DOMAIN_MAP: Record<string, { label: string; subtitle: string; Icon: LucideIcon; key: Domain }> = {
   money: { label: '돈', subtitle: 'MONEY', Icon: Wallet, key: 'money' },
@@ -16,6 +18,26 @@ const DOMAIN_MAP: Record<string, { label: string; subtitle: string; Icon: Lucide
 
 export function generateStaticParams() {
   return Object.keys(DOMAIN_MAP).map(domain => ({ domain }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ domain: string }>;
+}): Promise<Metadata> {
+  const { domain } = await params;
+  const meta = DOMAIN_MAP[domain];
+  if (!meta) return {};
+  return {
+    title: `${meta.label} (${meta.subtitle})`,
+    description: `JT HONG의 ${meta.label} 영역 콘텐츠 — NINEDRASILL`,
+    alternates: { canonical: `${SITE_URL}/domain/${domain}` },
+    openGraph: {
+      title: `${meta.label} / ${meta.subtitle}`,
+      description: `JT HONG의 ${meta.label} 영역 콘텐츠`,
+      url: `${SITE_URL}/domain/${domain}`,
+    },
+  };
 }
 
 export default async function DomainPage({ params }: { params: Promise<{ domain: string }> }) {

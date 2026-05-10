@@ -1,7 +1,13 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import type { Metadata } from 'next';
 import { getAllContent } from '@/lib/content';
 import { isAuthorized, getEnvPassword, setAuthCookie, clearAuthCookie } from '@/lib/auth';
+
+export const metadata: Metadata = {
+  title: 'PRIVATE',
+  robots: { index: false, follow: false },
+};
 
 async function loginAction(formData: FormData) {
   'use server';
