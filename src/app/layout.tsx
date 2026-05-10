@@ -13,7 +13,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col relative">
+        <div
+          className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/bg.jpg')" }}
+        />
+        <div className="fixed inset-0 -z-10 bg-black/75" />
+        {children}
+      </body>
     </html>
   );
 }
