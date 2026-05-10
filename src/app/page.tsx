@@ -7,7 +7,7 @@ export default function Home() {
   const recent = all.slice(0, 4);
 
   return (
-    <main className="max-w-[1600px] mx-auto px-12 py-12">
+    <main className="w-full px-16 py-12">
       <header className="mb-10">
         <h1 className="text-3xl font-bold tracking-tight">JTHONG.IO</h1>
         <p className="text-[var(--muted)] mt-2 text-sm">
