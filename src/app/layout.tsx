@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
+import { Poiret_One } from "next/font/google";
 import "./globals.css";
+
+const poiret = Poiret_One({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-poiret",
+});
 
 export const metadata: Metadata = {
   title: "JTHONG.IO — NINEDRASILL",
@@ -12,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="h-full antialiased">
+    <html lang="ko" className={`${poiret.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col relative">
         <div
           className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"

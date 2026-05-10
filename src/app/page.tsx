@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="w-full px-16 py-12">
       <header className="mb-10">
-        <h1 className="text-3xl font-bold tracking-tight">Ninedrasill Group</h1>
+        <h1 className="text-5xl font-bold tracking-wide" style={{ fontFamily: "var(--font-poiret), sans-serif" }}>JT HONG</h1>
       </header>
 
       <section className="mb-8 bg-[var(--card-red)] rounded-md p-5">
@@ -90,7 +90,7 @@ export default function Home() {
       )}
 
       <footer className="mt-16 pt-6 border-t border-[var(--border)] text-xs text-[var(--muted)]">
-        © 2026 JT HONG
+        © 2026 NINEDRASILL GROUP PTE. LTD.
       </footer>
     </main>
   );
