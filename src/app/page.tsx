@@ -5,10 +5,10 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { DomainCard } from '@/components/DomainCard';
-import { getAllContent } from '@/lib/content';
+import { getPublicContent } from '@/lib/content';
 
 export default function Home() {
-  const all = getAllContent();
+  const all = getPublicContent();
   const recent = all.slice(0, 4);
 
   const contentTypes = [
@@ -87,6 +87,35 @@ export default function Home() {
               <span>{c.label}</span>
             </Link>
           ))}
+        </div>
+      </section>
+
+      <section className="px-6 sm:px-12 lg:px-40 pt-20 pb-10">
+        <div className="flex items-center gap-6 mb-10">
+          <span className="text-xs tracking-[0.3em] text-[var(--muted)] whitespace-nowrap">
+            COMPANIES
+          </span>
+          <div className="flex-1 h-px bg-[var(--border)]" />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div>
+            <h3 className="font-semibold mb-2">주식회사 화물인</h3>
+            <p className="text-sm text-[var(--muted)] leading-relaxed">
+              종합화물운송회사
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-2">주식회사 화물인이사</h3>
+            <p className="text-sm text-[var(--muted)] leading-relaxed">
+              AI 이사 플랫폼
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-2">NINEDRASILL GROUP PTE. LTD.</h3>
+            <p className="text-sm text-[var(--muted)] leading-relaxed">
+              management company
+            </p>
+          </div>
         </div>
       </section>
 

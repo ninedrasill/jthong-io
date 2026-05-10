@@ -36,6 +36,10 @@ export function getById(id: string): ContentMeta | undefined {
   return getAllContent().find(c => c.id === id);
 }
 
+export function getPublicContent(): ContentMeta[] {
+  return getAllContent().filter(c => c.visibility === 'public');
+}
+
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 
 export function getAllContent(): ContentMeta[] {

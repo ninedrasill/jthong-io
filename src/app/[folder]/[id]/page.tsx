@@ -9,7 +9,9 @@ const VALID_FOLDERS = new Set([
 ]);
 
 export function generateStaticParams() {
-  return getAllContent().map(c => ({ folder: c.folder, id: c.id }));
+  return getAllContent()
+    .filter(c => c.visibility === 'public')
+    .map(c => ({ folder: c.folder, id: c.id }));
 }
 
 export default async function ContentPage({
@@ -20,7 +22,7 @@ export default async function ContentPage({
   const { folder, id } = await params;
   if (!VALID_FOLDERS.has(folder)) notFound();
   const item = getById(id);
-  if (!item || item.folder !== folder) notFound();
+  if (!item || item.folder !== folder || item.visibility !== 'public') notFound();
 
   return (
     <main className="w-full max-w-3xl mx-auto px-8 py-12">
