@@ -28,9 +28,6 @@ export default function Home() {
       </section>
 
       <section className="mb-10">
-        <h2 className="text-sm font-semibold mb-3 text-[var(--muted)] uppercase tracking-wider">
-          5대 영역
-        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           <DomainCard tone="yellow" icon="💰" title="돈" subtitle="MONEY"
             items={[{ label: '사업·투자' }, { label: 'EXIT 전략' }, { label: '자산·재무' }]}
