@@ -11,6 +11,19 @@ const VALID_FOLDERS = new Set([
   'projects', 'businesses', 'decisions', 'lessons', 'people', 'books',
 ]);
 
+const FOLDER_LABELS: Record<string, string> = {
+  essays: '글',
+  videos: '영상',
+  travels: '여행',
+  memos: '메모',
+  projects: '프로젝트',
+  businesses: '사업',
+  decisions: '의사결정',
+  lessons: '깨달음',
+  people: '인물',
+  books: '책',
+};
+
 export function generateStaticParams() {
   return getAllContent().map(c => ({ folder: c.folder, id: c.id }));
 }
@@ -127,8 +140,8 @@ export default async function ContentPage({
         />
       )}
       <div className="mb-6">
-        <Link href="/" className="text-sm text-[var(--muted)] hover:opacity-80">
-          ← 홈
+        <Link href={`/type/${folder}`} className="text-sm text-[var(--muted)] hover:opacity-80">
+          ← {FOLDER_LABELS[folder] ?? folder}
         </Link>
       </div>
 
