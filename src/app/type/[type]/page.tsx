@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import {
-  PenLine, Video, Plane, StickyNote, Rocket, Building2, Target, Lightbulb, User,
+  PenLine, Video, Plane, StickyNote, Rocket, Building2, Target, Lightbulb, User, BookOpen,
   type LucideIcon,
 } from 'lucide-react';
 import { getAllContent } from '@/lib/content';
@@ -18,6 +18,7 @@ const TYPE_MAP: Record<string, { label: string; Icon: LucideIcon; folder: string
   decisions: { label: '의사결정', Icon: Target, folder: 'decisions' },
   lessons: { label: '깨달음', Icon: Lightbulb, folder: 'lessons' },
   people: { label: '인물', Icon: User, folder: 'people' },
+  books: { label: '책', Icon: BookOpen, folder: 'books' },
 };
 
 export function generateStaticParams() {

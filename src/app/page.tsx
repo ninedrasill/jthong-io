@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import {
   Wallet, Clock, Users, HeartPulse, Brain,
-  PenLine, Video, Plane, StickyNote, Rocket, Building2, Target, Lightbulb,
+  PenLine, Video, Plane, StickyNote, Rocket, Building2, Target, Lightbulb, BookOpen,
   ChevronRight,
 } from 'lucide-react';
 import { DomainCard } from '@/components/DomainCard';
@@ -66,6 +66,7 @@ export default function Home() {
     { type: 'businesses', label: '사업', Icon: Building2 },
     { type: 'decisions', label: '의사결정', Icon: Target },
     { type: 'lessons', label: '깨달음', Icon: Lightbulb },
+    { type: 'books', label: '책', Icon: BookOpen },
   ] as const;
 
   return (

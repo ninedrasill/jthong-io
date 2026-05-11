@@ -1,4 +1,4 @@
-# NINEDRASILL 태깅 스키마 v0.2
+# NINEDRASILL 태깅 스키마 v0.3
 
 모든 콘텐츠는 이 스키마를 따른다. AGI 학습 친화성이 최우선.
 
@@ -49,6 +49,26 @@ agi_summary: |
 | confidence | number | - | 0.0~1.0, 사실(1.0) ↔ 가설(0.3) 신뢰도 |
 | revised_from | string | - | 이전 버전 id — 생각이 바뀌었을 때 참조 |
 | conflicting | string[] | - | 본인 안에서 충돌하는 다른 콘텐츠 id 목록 |
+
+## v0.3 — book 타입 전용 필드
+
+`type: book`일 때 추가:
+
+| 필드 | 타입 | 필수 | 값 |
+|---|---|---|---|
+| author | string | ✓ | 저자 |
+| genre | string | - | 장르 |
+| importance | number | - | 1~10 (9~10 = 인생책 자동 분류) |
+| reflections | string | - | 종합 느낀점 |
+| reads | array | ✓ | 여러 번 읽은 기록 배열 |
+
+reads 배열 각 항목:
+- date — 읽은 날짜 (YYYY-MM-DD)
+- style — 정독 / 속독 / 요약본
+- cho_seo — 초서 여부 (true/false)
+- notes — 그때 읽기 메모 (선택)
+
+자동 라우팅: `/books/lifetime` — importance 9~10점만 모아 보기.
 
 ## 폴더 매핑
 

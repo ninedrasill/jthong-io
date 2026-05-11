@@ -5,7 +5,16 @@ import matter from 'gray-matter';
 export type Domain = 'money' | 'time' | 'people' | 'body' | 'mind';
 export type ContentType =
   | 'essay' | 'video' | 'travel' | 'memo'
-  | 'project' | 'business' | 'decision' | 'lesson' | 'person';
+  | 'project' | 'business' | 'decision' | 'lesson' | 'person' | 'book';
+
+export type ReadStyle = '정독' | '속독' | '요약본';
+
+export interface BookRead {
+  date: string;
+  style: ReadStyle;
+  cho_seo?: boolean;
+  notes?: string;
+}
 
 export interface ContentMeta {
   id: string;
@@ -28,6 +37,12 @@ export interface ContentMeta {
   confidence?: number;
   revised_from?: string;
   conflicting?: string[];
+  // book-specific
+  author?: string;
+  genre?: string;
+  importance?: number;
+  reflections?: string;
+  reads?: BookRead[];
   body: string;
   folder: string;
 }

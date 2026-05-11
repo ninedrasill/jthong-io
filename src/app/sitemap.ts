@@ -7,7 +7,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: SITE_URL, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
-    ...['essays', 'videos', 'travels', 'memos', 'projects', 'businesses', 'decisions', 'lessons', 'people'].map(
+    { url: `${SITE_URL}/books/lifetime`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.6 },
+    ...['essays', 'videos', 'travels', 'memos', 'projects', 'businesses', 'decisions', 'lessons', 'people', 'books'].map(
       type => ({
         url: `${SITE_URL}/type/${type}`,
         lastModified: now,

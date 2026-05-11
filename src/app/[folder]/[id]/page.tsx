@@ -8,7 +8,7 @@ import { SITE_URL, SITE_AUTHOR } from '@/lib/seo';
 
 const VALID_FOLDERS = new Set([
   'essays', 'videos', 'travels', 'memos',
-  'projects', 'businesses', 'decisions', 'lessons', 'people',
+  'projects', 'businesses', 'decisions', 'lessons', 'people', 'books',
 ]);
 
 export function generateStaticParams() {
@@ -155,6 +155,63 @@ export default async function ContentPage({
           </div>
         )}
       </header>
+
+      {item.type === 'book' && (
+        <section className="mb-10 grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+          {item.author && (
+            <div>
+              <div className="text-xs uppercase text-[var(--muted)] mb-1">저자</div>
+              <div>{item.author}</div>
+            </div>
+          )}
+          {item.genre && (
+            <div>
+              <div className="text-xs uppercase text-[var(--muted)] mb-1">장르</div>
+              <div>{item.genre}</div>
+            </div>
+          )}
+          {item.importance !== undefined && (
+            <div>
+              <div className="text-xs uppercase text-[var(--muted)] mb-1">중요도</div>
+              <div>
+                {item.importance} / 10
+                {item.importance >= 9 && (
+                  <span className="ml-2 text-xs px-2 py-0.5 border border-[var(--muted)] rounded">
+                    인생책
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
+          {item.reflections && (
+            <div className="sm:col-span-2">
+              <div className="text-xs uppercase text-[var(--muted)] mb-1">느낀점</div>
+              <div className="leading-relaxed">{item.reflections}</div>
+            </div>
+          )}
+          {item.reads && item.reads.length > 0 && (
+            <div className="sm:col-span-2">
+              <div className="text-xs uppercase text-[var(--muted)] mb-3">읽은 기록</div>
+              <ul className="space-y-3">
+                {item.reads.map((r, i) => (
+                  <li key={i} className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <span className="text-[var(--muted)]">#{i + 1}</span>
+                    <span>{r.date}</span>
+                    <span>·</span>
+                    <span>{r.style}</span>
+                    {r.cho_seo && (<><span>·</span><span>초서</span></>)}
+                    {r.notes && (
+                      <span className="basis-full text-xs text-[var(--muted)] mt-1 pl-8">
+                        {r.notes}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </section>
+      )}
 
       <article className="text-[var(--foreground)] leading-relaxed space-y-4 [&_h1]:text-2xl [&_h1]:font-bold [&_h1]:mt-8 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:mt-6 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:mt-4 [&_p]:my-3 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:my-1 [&_code]:bg-[var(--card-gray)] [&_code]:px-1 [&_code]:rounded [&_a]:underline">
         <MDXRemote source={item.body} />
