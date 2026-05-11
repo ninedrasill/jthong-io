@@ -69,10 +69,22 @@ export function getAllContent(): ContentMeta[] {
     for (const file of files) {
       const raw = fs.readFileSync(path.join(folderPath, file), 'utf-8');
       const { data, content } = matter(raw);
-      const date = data.date instanceof Date
-        ? data.date.toISOString().slice(0, 10)
-        : String(data.date);
-      all.push({ ...(data as Omit<ContentMeta, 'body' | 'folder' | 'date'>), date, body: content, folder });
+      const toDateStr = (v: unknown): string =>
+        v instanceof Date ? v.toISOString().slice(0, 10) : String(v);
+      const date = toDateStr(data.date);
+      const reads = Array.isArray(data.reads)
+        ? data.reads.map((r: BookRead & { date: unknown }) => ({
+            ...r,
+            date: toDateStr(r.date),
+          }))
+        : undefined;
+      all.push({
+        ...(data as Omit<ContentMeta, 'body' | 'folder' | 'date' | 'reads'>),
+        date,
+        reads,
+        body: content,
+        folder,
+      });
     }
   }
 
