@@ -87,7 +87,7 @@ export default function RootLayout({
           }}
         />
         <div
-          className="fixed left-0 top-0 w-screen -z-10 bg-black/80"
+          className="fixed left-0 top-0 w-screen -z-10 bg-black/[0.78]"
           style={{ height: "100lvh" }}
         />
         {children}
